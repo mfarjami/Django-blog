@@ -9,10 +9,12 @@
 	<li><a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a> - {{ post.author }} -
 		{{ post.publish }}
 	<small>
-		<a href="{% url 'blog:update' post.pk %}">(Eidt)</a> 
-		<a href="{% url 'blog:delete' post.pk %}">(Delete)</a></small>
-	<br/>
-	{{ post.body }}</li>
+		{% if user.is_authenticated %}
+	  - <a href="{% url 'blog:update' post.pk %}">(Eidt)</a> 
+		<a href="{% url 'blog:delete' post.pk %}">(Delete)</a></small> 
+		{% endif %}
+	</small> <br/>
+	{{ post.body|slice:":100" }}</li>
 {% endfor %}
 </ul>
 
