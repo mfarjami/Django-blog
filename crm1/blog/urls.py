@@ -10,5 +10,7 @@ urlpatterns = [
 	path('category/',PostCategoryView.as_view(),name='category'),
 	path('update/<int:pk>/',PostUpdate.as_view(),name='update'),
 	path('delete/<int:pk>/',PostDelete.as_view(),name='delete'),
-	path('category/<str:cats>/', CategoryView, name='categories')
+	path('category/<str:cats>/', CategoryView, name='categories'),
+	path('category-list/', CategoryListView, name='category-list'),
+
 ]
