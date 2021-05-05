@@ -7,7 +7,7 @@
 <ul>
 {% for post in object_list %}
 	<li><a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a> - {{ post.author }} -
-		{{ post.publish }}
+		<a href="{% url 'blog:categories' post.category%}">{{ post.category }}</a> - {{ post.publish }}
 	<small>
 		{% if user.is_authenticated %}
 	  - <a href="{% url 'blog:update' post.pk %}">(Eidt)</a> 
