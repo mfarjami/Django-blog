@@ -7,16 +7,21 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h1>Remove post...</h1>
-<br/>
-<div class="form-group">
-	<form method="POST">
-		<strong>Are you sure you want to delete "{{ object }}"?</strong>
+	{% if user.id == post.author.id %}
+		<h1>Remove post...</h1>
 		<br/>
-		{% csrf_token %}<br/>
-		<button class="btn btn-danger"  >Delete post</button>
-	</form>
-</div>
+		<div class="form-group">
+			<form method="POST">
+				<strong>Are you sure you want to delete "{{ object }}"?</strong>
+				<br/>
+				{% csrf_token %}<br/>
+				<button class="btn btn-danger"  >Delete post</button>
+			</form>
+		</div>
+	{% else %}
+
+		You're not allowed here!  
+	{% endif %}
 {% else %}
 
 You're not allowed here! (Please <a href="{% url 'login' %}">login</a>  .) 
