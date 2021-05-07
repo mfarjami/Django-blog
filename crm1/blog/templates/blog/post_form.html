@@ -7,14 +7,22 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h1>Create post...</h1>
-<div class="form-group">
-	<form method="POST">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button class="btn btn-info"  >post</button>
-	</form>
-</div>
+	<h1>Create post...</h1>
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-info"  >post</button>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		var name = "{{ user.id }}";
+		document.getElementById("elder").value =
+			name;
+	</script>
+
+
 {% else %}
 
 You're not allowed here! (Please <a href="{% url 'login' %}">login</a>  .) 
