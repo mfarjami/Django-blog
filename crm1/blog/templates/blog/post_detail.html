@@ -1,4 +1,5 @@
 {% extends 'blog/list.html' %}
+{% load static %}
 
 {% block title %}
 	Gute Fahrt | {{ post.title }}
@@ -14,9 +15,13 @@
 		{% endif %}
 	{% endif %}
 </small>
+
 <br/>
 <hr>
-<br/>
+	{% if post.thumbanil %}
+		<img src="{{ post.thumbanil.url }}">
+	{% endif %}
+<br/><br/>
 {{ post.body|safe }}</li>
 
 
@@ -40,5 +45,41 @@
 	{% endif %}
 		- {{total_likes}} Likes
 </form>
+<br/>
+<div class="card mb-3" >
+  <div class="row no-gutters">
+	<div class="col-md-2">
+
+
+{% if post.author.profile.profile_pic %}
+	<img src="{{ post.author.profile.profile_pic.url }}" width=150 height=150 >
+{% else %}
+	<img src="{% static 'blog/images/guest-user.jpg' %}" width=150 height=150 > 
+{% endif %}
+	</div>
+	<div class="col-md-10">
+	  <div class="card-body">
+		<h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+	<p class="small card-text">
+		{% if post.author.profile.facebook_url %}
+		<a  href="{{ post.author.profile.facebook_url }}" target="_blank">Facebook</a>
+		{% endif %}
+		{% if post.author.profile.twitter_url %}
+		<a href="{{ post.author.profile.twitter_url }}" target="_blank">| Twitter</a>
+		{% endif %}
+		{% if post.author.profile.instagram_url %}
+		<a href="{{ post.author.profile.instagram_url }}" target="_blank">| Instagram</a>
+		{% endif %}
+		{% if post.author.profile.telegram_url %}
+		<a href="{{ post.author.profile.telegram_url }}" target="_blank">| Telegram</a>
+		{% endif %}
+	</p>
+		<p class="card-text">{{ user.profile.bio }}</p>
+	  </div>
+	</div>
+  </div>
+</div>
+<br/>
+<!-- <img src="{{ post.author.profile.profile_pic.url }}"> -->
 
 {% endblock %}
