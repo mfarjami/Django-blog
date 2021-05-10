@@ -1,0 +1,32 @@
+{% extends 'blog/list.html' %}
+
+{% block title %}
+	Create profile
+{% endblock %}
+
+{% block content %}
+
+{{self.request.user.id}}
+{% if user.is_authenticated %}
+	{% if form.user.id == self.request.user %}
+	<h1>Create Profile...</h1>
+	<div class="form-group">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-info"  >post</button>
+		</form>
+	</div>
+	{% endif %}
+
+
+{% else %}
+
+You're not allowed here! (Please <a href="{% url 'login' %}">login</a>  .) 
+
+
+{% endif %}
+
+
+
+{% endblock %}

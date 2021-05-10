@@ -1,30 +1,37 @@
 {% extends 'blog/list.html' %}
 
 {% block title %}
-	Update
+	Edit setting
 {% endblock %}
 
 {% block content %}
 
 
-<h1>Update... </h1>
-
-<br/>
-{{ user.profile.bio }}
-<br/>
-<br/>
-
-<div class="form-group">
-	<form method="POST">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button class="btn btn-info"  >update</button>
-	</form>
-</div>
+<h1>Edit setting... </h1>
+{% if user.is_authenticated %}
 
 
+	<br/>
+	{{ user.profile.bio }}
+	<br/>
+	<br/>
+
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-info"  >update</button>
+		</form>
+	</div>
 
 
+
+{% else %}
+
+	You are not corect User the Edit this page...
+
+
+{% endif %}
 
 
 
