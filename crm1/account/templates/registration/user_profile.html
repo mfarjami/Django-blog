@@ -15,11 +15,11 @@
 	<div class="col-md-2">
 
 
-{% if page_user.profile_pic %}
-	<img src="{{ page_user.profile_pic.url }}" width=150 height=150 >
-{% else %}
-	<img src="{% static 'blog/images/guest-user.jpg' %}" width=150 height=150 > 
-{% endif %}
+	{% if page_user.profile_pic %}
+		<img src="{{ page_user.profile_pic.url }}" width=150 height=150 >
+	{% else %}
+		<img src="{% static 'blog/images/guest-user.jpg' %}" width=150 height=150 > 
+	{% endif %}
 	</div>
 	<div class="col-md-10">
 	  <div class="card-body">
