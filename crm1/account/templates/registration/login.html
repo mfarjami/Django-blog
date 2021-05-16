@@ -9,11 +9,21 @@
 
 <h1>Login </h1>
 <div class="form-group">
-	<form method="POST">
+<form method="POST">
 		{% csrf_token %}
-		{{ form.as_p }}
+
+	<div class="form-group">
+		<input type="text" class="form-control" name=username placeholder="username">
+	</div>
+	<div class="form-group">
+		<input type="password" class="form-control" name=password placeholder="password">
+	</div>
+
+
 		<button class="btn btn-info"  >login</button>
-	</form>
+</form>
+<br/>
+Not register? Sign Up <a href="{% url 'account:register' %}">Here</a>...
 </div>
 
 

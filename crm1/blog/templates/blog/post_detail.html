@@ -56,11 +56,11 @@
 <div class="card mb-3" >
   <div class="row no-gutters">
 	<div class="col-md-2">
-	{% if post.author.profile.profile_pic %}
-		<img src="{{ post.author.profile.profile_pic.url }}" width=150 height=150 >
-	{% else %}
-		<img src="{% static 'blog/images/guest-user.jpg' %}" width=150 height=150 > 
-	{% endif %}
+{% if post.author.profile.profile_pic %}
+	<img src="{{ post.author.profile.profile_pic.url }}" class="card-img" width=150 height=150 >
+{% else %}
+	<img src="{% static 'blog/images/guest-user.jpg' %}" class="card-img" width=150 height=150 > 
+{% endif %}
 	</div>
 	<div class="col-md-10">
 	  <div class="card-body">
@@ -68,7 +68,6 @@
 	<p class="small card-text">
 
 		<a href="{% url 'account:show_profile' post.author.profile.id %}">profile page</a>
-		
 
 
 		{% if post.author.profile.facebook_url %}
