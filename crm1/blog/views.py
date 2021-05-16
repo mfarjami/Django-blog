@@ -63,6 +63,17 @@ class PostCreate(CreateView):
 	form_class = PostForm
 	# fields = '__all__'
 
+
+class CommentCreate(CreateView):
+	model = Comment
+	form_class = CommentForm
+	# fields = '__all__'
+	success_url = reverse_lazy('blog:home')
+
+	def form_valid(self, form):
+		form.instance.post_id = self.kwargs['pk']
+		return super().form_valid(form)
+
 class PostCategoryView(CreateView):
 	model = Category
 	# form_class = UpdateForm

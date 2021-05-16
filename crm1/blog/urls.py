@@ -13,4 +13,6 @@ urlpatterns = [
 	path('category/<str:cats>/', CategoryView, name='categories'),
 	path('category-list/', CategoryListView, name='category-list'),
 	path('like/<int:pk>', LikeView, name='like_post'),
+	path('article/<int:pk>/comment/',CommentCreate.as_view(),name='add_comment'),
+
 ]

@@ -53,25 +53,6 @@
 </form>
 <br/>
 <br/>
-<h2>Comment....</h2>
-<br/>
-{% if not post.comments.all %}
-	No comment I'm sorry<a href="#">Add one</a>
-	<br/>
-{% else %}
-	{% for comment in post.comments.all %}
-		<strong>
-			{{ comment.name }} - 
-			{{ comment.date_added }}
-		</strong>
-		<br/>
-		{{ comment.body }}
-<br/>
-<br/>
-	{% endfor %}
-{% endif %}
-
-<br/>
 <div class="card mb-3" >
   <div class="row no-gutters">
 	<div class="col-md-2">
@@ -110,5 +91,30 @@
 </div>
 <br/>
 <!-- <img src="{{ post.author.profile.profile_pic.url }}"> -->
+
+
+<h1>Comment....</h1>
+<br/>
+{% if not post.comments.all %}
+	No comment sorry<a href="{% url 'blog:add_comment' post.pk %}">Add one</a>
+	<br/>
+{% else %}
+<a href="{% url 'blog:add_comment' post.pk %}">Add comment</a>
+<br/>
+<br/>
+	{% for comment in post.comments.all %}
+		<strong>
+			{{ comment.name }} - 
+			{{ comment.date_added }}
+		</strong>
+		<br/>
+		{{ comment.body }}
+<br/>
+<br/>
+	{% endfor %}
+
+
+{% endif %}
+
 
 {% endblock %}
