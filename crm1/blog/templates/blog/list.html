@@ -51,11 +51,29 @@
 				<a class="nav-link" href="{% url 'blog:category' %}">Create category</a>
 			</li>
 
+			
+
+
+			{% else %}
+
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'account:register' %}">Register</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+
+		
+		</ul>
+{% if user.is_authenticated %}
+		<ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Profile
+					{{ user.first_name }}
+					{{ user.last_name }}
 				</a>
-			  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 				<li><a class="dropdown-item" href="{% url 'account:edit_profile' %}">Edit setting</a></li>
 
 				{% if user.profile.id %}
@@ -68,22 +86,15 @@
 				<li><a class="dropdown-item" href="{% url 'account:create_profile_page' %}">Create Profile page</a></li>
 				{% endif %}
 
+				<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
 			  </ul>
 			</li>
 
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'logout' %}">Logout</a>
-			</li>
+			
+		</ul>
+{% endif %}
 
-			{% else %}
-
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'account:register' %}">Register</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'login' %}">Login</a>
-			</li>
-			{% endif %}
 	</div>
 </nav>
 		<br/>
@@ -100,3 +111,4 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	</body>
 </html>
+
